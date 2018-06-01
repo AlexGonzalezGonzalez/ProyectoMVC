@@ -133,7 +133,7 @@ public class Vista extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, "Error en el proceso");
     }//GEN-LAST:event_bInsertActionPerformed
     /**
-     * Boton mostrar que se encarga de actualizar el modelo  que recibe del controlador
+     * Boton mostrar que se encarga de actualizar el modelo  que recibe del controlador.
      * @param evt 
      */
     private void bMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrarActionPerformed
