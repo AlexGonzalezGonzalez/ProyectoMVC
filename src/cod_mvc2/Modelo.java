@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ *Clase modelo encargada de los datos de la base
  * @author estudios
  */
 public class Modelo {
@@ -26,10 +26,17 @@ public class Modelo {
     DatabaseMetaData meta;
     Connection conn;
 
+    /**
+     *Constructor por defecto
+     */
     public Modelo() {
 
     }
 
+    /**
+     *metodo que se conecta a la base
+     * @return retorna un boolean dependiendo si se ha conectado o no
+     */
     public boolean conectarse() {
         try {
             String url = "jdbc:sqlite:C:\\Users\\estudios\\Desktop\\BaseDatosSQLite\\BaseCod.db";
@@ -50,6 +57,12 @@ public class Modelo {
         return conectado;
     }
 
+    /**
+     * metodo que se encarga de hacer los inserts en la base de datos
+     * @param id
+     * @param nombre
+     * @return
+     */
     public boolean insert(int id, String nombre) {
 
         try {
@@ -64,6 +77,10 @@ public class Modelo {
         }
     }
 
+    /**
+     *metodo que se encarga de mostrar los datos de la tabla
+     * @return un arraylist con los datos de la tabla
+     */
     public ArrayList mostrar() {
         conectarse();
         ArrayList lista= new ArrayList();
@@ -90,26 +107,50 @@ public class Modelo {
 return lista;
     }
 
+    /**
+     *getter de meta
+     * @return
+     */
     public DatabaseMetaData getMeta() {
         return meta;
     }
 
+    /**
+     *setter de meta
+     * @param meta
+     */
     public void setMeta(DatabaseMetaData meta) {
         this.meta = meta;
     }
 
+    /**
+     * getter connexion
+     * @return
+     */
     public boolean isConectado() {
         return conectado;
     }
 
+    /**
+     *setter connexion
+     * @param conectado
+     */
     public void setConectado(boolean conectado) {
         this.conectado = conectado;
     }
 
+    /**
+     *getter conn
+     * @return
+     */
     public Connection getConn() {
         return conn;
     }
 
+    /**
+     *setter conn
+     * @param conn
+     */
     public void setConn(Connection conn) {
         this.conn = conn;
     }

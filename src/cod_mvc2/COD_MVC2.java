@@ -12,8 +12,13 @@ import java.sql.Connection;
  * @author estudios
  */
 public class COD_MVC2 {
-public static Connection conn ;
+
     /**
+     *variable de tipo Connection apra la conexion de la base
+     */
+    public static Connection conn ;
+    /**
+     * Metodo main donde se muestra el frame
      * @param args the command line arguments
      */
     public static void main(String[] args) {
