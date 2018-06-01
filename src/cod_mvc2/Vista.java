@@ -22,7 +22,7 @@ public class Vista extends javax.swing.JFrame {
         initComponents();
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
-        this.jTable1.setModel(modelo);
+        this.tabka.setModel(modelo);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -37,14 +37,14 @@ public class Vista extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        tabka = new javax.swing.JTable();
+        bConn = new javax.swing.JButton();
+        bMostrar = new javax.swing.JButton();
+        bInsert = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabka.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -55,26 +55,26 @@ public class Vista extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabka);
 
-        jButton1.setText("Conectarse");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bConn.setText("Conectarse");
+        bConn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bConnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Mostrar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bMostrar.setText("Mostrar");
+        bMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bMostrarActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Insert");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bInsert.setText("Insert");
+        bInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bInsertActionPerformed(evt);
             }
         });
 
@@ -86,11 +86,11 @@ public class Vista extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(bConn)
                         .addGap(94, 94, 94)
-                        .addComponent(jButton2)
+                        .addComponent(bMostrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3))
+                        .addComponent(bInsert))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(74, Short.MAX_VALUE))
         );
@@ -101,35 +101,45 @@ public class Vista extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(bConn)
+                    .addComponent(bMostrar)
+                    .addComponent(bInsert))
                 .addGap(0, 59, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    /**
+     * Accion del boton conn que se encarga de conectarse a la base y muestra un mensaje si se conecto o un error si no.
+     * @param evt 
+     */
+    private void bConnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bConnActionPerformed
         if(control.crearBase())
             JOptionPane.showMessageDialog(null, "Conectado");
         else
             JOptionPane.showMessageDialog(null, "Error de conexion");
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_bConnActionPerformed
+    /**
+     * Accion del boton del insert que se encarga de pedir los datos de la tabla para enviarselos al controlador.
+     * Si se realizo correctamente se muestra un mensaje u otro si no se realizo correctamente
+     * @param evt 
+     */
+    private void bInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInsertActionPerformed
        int id=Integer.parseInt(JOptionPane.showInputDialog("ID"));
        String nombre=JOptionPane.showInputDialog("Nombre");
        if(control.insert(id, nombre))
            JOptionPane.showMessageDialog(null, "Se ha añadido una fila");
        else
            JOptionPane.showMessageDialog(null, "Error en el proceso");
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_bInsertActionPerformed
+    /**
+     * Boton mostrar que se encarga de actualizar el modelo  que recibe del controlador
+     * @param evt 
+     */
+    private void bMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrarActionPerformed
         DefaultTableModel tm=control.mostrar();
-        this.jTable1.setModel(tm);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        this.tabka.setModel(tm);
+    }//GEN-LAST:event_bMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,10 +177,10 @@ public class Vista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton3;
+    public javax.swing.JButton bConn;
+    public javax.swing.JButton bInsert;
+    public javax.swing.JButton bMostrar;
     public javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable tabka;
     // End of variables declaration//GEN-END:variables
 }
